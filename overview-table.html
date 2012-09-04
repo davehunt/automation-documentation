@@ -1,0 +1,98 @@
+<p>Below you will find a list of the various automated testing frameworks in use at Mozilla, along with a brief description and a link to read more.
+Generally, you should pick the lowest-level framework that you can. If you are testing JavaScript but don't need a window, use XPCShell. If you're
+testing page layout, try to use reftest. The advantage is that you don't drag in a lot of other components that might have their own problems, so
+you can hone in quickly on any bugs in what you are specifically testing.</p>
+<p>If you have questions, join #automation on irc.mozilla.org or post to the <a href="https://lists.mozilla.org/listinfo/dev-automation">public mailing list</a>.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="en/Automation/AutoPhone">AutoPhone</a></td>
+      <td>a platform for running automated tests on physical mobile devices.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Compiled-code">Compiled-Code</a></td>
+      <td>written in C++, compiled-code tests can test pretty much anything but are difficult to write properly.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Crashtest">Crashtest</a></td>
+      <td>If you've found a page that crashes Firefox, add a crashtest to make sure future versions don't experience this crash again.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Eideticker">Eideticker</a></td>
+      <td>an automated test harness that captures and analyzes browser output via HDMI.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Firebug">Firebug Test Runner</a></td>
+      <td>automates the process of running the Firebug tests.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/JMeter">JMeter</a></td>
+      <td>load testing functional behavior and measuring performance.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/JS_Reftest">JS Reftest</a></td>
+      <td>used to run the JavaScript tests in the browser using the reftest framework.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/JS_Shell">JS Shell</a></td>
+      <td>test every piece of the JavaScript engine.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Marionette">Marionette</a></td>
+      <td>used to drive the UI and JS/XPCOM layer of remote or local instances.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Mochitest/A11y">Mochitest: A11y</a></td>
+      <td>tests accessibility interfaces.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Mochitest/Browser_Chrome">Mochitest: Browser Chrome</a></td>
+      <td>runs in the scope of the browser window, this is a rough UI automation tool testing how the browser interacts with itself and with content.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Mochitest/Chrome">Mochitest: Chrome</a></td>
+      <td>run with high privileges that can test a lot of the browser's functionality. Tests that verify JavaScript interactions with chrome-level objects should go here.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Mochitest/IPC">Mochitest: IPC</a></td>
+      <td>tests plugin APIs, particularly out-of-process plugins.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Mochitest/Plain">Mochitest: Plain</a></td>
+      <td>used to test DOM APIs and other pieces of functionality exposed to web content (i.e. requiring no special permissions).</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Mozmill">Mozmill</a></td>
+      <td>an extensive framework for browser automation.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Peptest">Peptest</a></td>
+      <td>measures responsiveness, how "snappy" Firefox/Thunderbird feels, by issuing alerts when the event loop is stuck for more than 50 ms.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Reftest">Reftest</a></td>
+      <td>compares the display of two web pages.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Selenium">Selenium</a></td>
+      <td>a suite of tools for browser automation suitable for testing web content across multiple browsers.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/SpeedTests">SpeedTests</a></td>
+      <td>a framework for executing arbitrary tests, which report results via JavaScript calls, in several browsers.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/Talos">Talos</a></td>
+      <td>a framework for performance testing.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/TPS">TPS</a></td>
+      <td>a multi-profile test automation framework for Firefox Sync.</td>
+    </tr>
+    <tr>
+      <td><a href="en/Automation/XPCShell">XPCShell</a></td>
+      <td>console JavaScript tests. There is no chrome, no content, no window. XPCShell is useful for testing low-level things, such as XPCOM components.</td>
+    </tr>
+  </tbody>
+</table>
