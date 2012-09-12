@@ -21,6 +21,18 @@
               line client to help you write, run, and debug tests. Mozmill has an extensive
               API to help you write functional tests that simulate user interactions.</p>
 
+              <p>It's really important to note that there is no need to create a special
+              "test enabled" build of the target application before using Mozmill; instead, any
+              official build including releases and <a href="https://developer.mozilla.org/docs/Downloading_Nightly_or_Trunk_Builds">nightly</a>
+              builds will work out-of-the box. The <a href="#install">installation</a> of Mozmill
+              need only be done once. After that, each build on the local system can be used to
+              run the existing Mozmill tests immediately.</p>
+
+              <p>Mozmill tests are written in <a href="https://developer.mozilla.org/JavaScript">JavaScript</a>
+              and get executed in the scope of the application window, which enables them to have
+              access to any part of the UI and also to all available <a href="https://developer.mozilla.org/XPCOM_components">XPCOM components</a>.
+              Using Mozmill's command line client also offers the ability to run tests which require a restart of the application.</p>
+
               <h2>Source code</h2>
               <ul>
                 <li><a href="http://github.com/mozilla/mozmill">Mozmill</a></li>
