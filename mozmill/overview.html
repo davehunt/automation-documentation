@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Mozmill</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Overview</h2>
+              <p>Mozmill is a test tool and framework for writing automated tests for Gecko
+              based applications (Firefox, Thunderbird, Songbird, etc). It provides a command
+              line client to help you write, run, and debug tests. Mozmill has an extensive
+              API to help you write functional tests that simulate user interactions.</p>
+
+              <h2>Source code</h2>
+              <ul>
+                <li><a href="http://github.com/mozilla/mozmill">Mozmill</a></li>
+                <li><a href="http://hg.mozilla.org/qa/mozmill-tests">Firefox tests</a></li>
+                <li><a href="https://hg.mozilla.org/comm-central/file/default/mail/test/mozmill">Thunderbird tests</a></li>
+                <li><a href="http://hg.mozilla.org/qa/mozmill-automation">Automation scripts</a></li>
+              </ul>
+
+              <h2>Sample of test log</h2>
+<pre>TEST-START | pass.js | testPass
+TEST-PASS | pass.js | pass.js::testPass
+TEST-START | skip.js | setupModule
+WARNING | skip.js::setupModule | (SKIP) Skip test
+TEST-START | fail.js | testFail
+TEST-UNEXPECTED-FAIL | fail.js | fail.js::testFail
+INFO Passed: 1
+INFO Failed: 1
+INFO Skipped: 1</pre>
+
+              <h2>Continue reading</h2>
+              <ul>
+                <li><a href="how_to_run.html">How to run Mozmill tests</a></li>
+                <li><a href="how_to_write.html">How to write Mozmill tests</a></li>
+              </ul>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Firefox</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Thunderbird</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Mozmill</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
