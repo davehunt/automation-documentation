@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Running Reftests</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Read first</h2>
+              <ul>
+                <li><a href="overview.html">Reftest overview</a></li>
+              </ul>
+
+              <h2>Desktop</h2>
+
+              <h3>With build environment</h3>
+              <ol>
+                <li>Setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>.</li>
+                <li>Run <code>make -C $(OBJDIR) reftest</code>
+                <ul>
+                  <li><code>$(OBJDIR)</code> is the build's object directory, which is prefixed with obj-. The exact name depends on your system and OS.</li>
+                  <li>To run a particular set of reftests, use <code>TEST_PATH=path/from/sourcedir/reftest.list make -C $(OBJDIR) reftest</code></li>
+                </ul></li>
+              </ol>
+
+              <div class="note">Automation currently only runs <code>layout/reftests/reftest-sanity/reftest.list</code>! If you try to run the full suite, you may experience stalls or other issues.</div>
+
+              <h3>With built packages</h3>
+              <ol>
+                <li>Download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>.</li>
+                <li>Open a terminal and change to the directory of the extracted tests.</li>
+                <li>Run <code>python runreftest.py tests/layout/reftests/reftest-sanity</code></li>
+              </ol>
+
+              <h2>Mobile</h2>
+              <p>Reftest does not support running tests on mobile.</p>
+
+              <h2>Continue reading</h2>
+              <a href="how_to_write.html">How to write Reftests</a>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftests</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

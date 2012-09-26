@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Reftest</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Overview</h2>
+              <p>The reftest harness compares the display of two web pages. If the bitmaps
+              resulting from displaying the two files in an 800x1000 window are identical,
+              the test passes. If they differ, the test fails. Or, alternatively, the
+              conditions can be reversed. The power of the tool comes from the fact that
+              there is more than one way to achieve any given visual effect in a browser.
+              So, if the effect of complex markup is being tested, put that complex markup
+              into a page and create another page that uses simple markup to achieve the
+              same visual effect. Reftest will then compare them and verify whether they
+              produce the same bitmap.</p>
+
+              <p>This idea can seem odd when first encountered. Automated testing usually
+              compares output against an invariant, a "gold standard", that is determined
+              to be correct. If one has software that multiplies numbers, one wants a
+              regression test to show that 2 * 2 continues to be calculated to be 4, not
+              something similar to but not quite exactly 4. But an operating system does
+              change with time. It is not invariant. And a browser may change the visual
+              effect produced by a tag while still being compliant with relevant
+              standards. For example, the HTML 4.01 specification at the W3C specifies
+              that text inside of a <code>&lt;blockquote&gt;</code> will be indented, but
+              it does not specify the number of pixels of the indentation. If a browser
+              changes the depth of the indenting and the visual construct is tested against
+              an invariant, the test would appear to fail. But the test should not fail,
+              unless the <code>&lt;blockquote&gt;</code> element did not cause any
+              indentation at all. If a regression test harness has false failures, it makes
+              the harness not trustworthy and the harness will not be used.</p>
+
+              <h2>How to run this test suite on try</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius porta quam, quis tempus tellus viverra at. Suspendisse leo arcu, tempus vel tempor at, dictum in arcu. Duis gravida euismod ipsum sit amet euismod. Morbi felis magna, pharetra non tempus ac, aliquam eget ante. Cras enim orci, fringilla luctus commodo eu, porttitor ut purus. In aliquet quam a ligula blandit consequat. Vivamus eu felis quam. Vivamus odio diam, consectetur non placerat id, vulputate id dui. Aenean eu sapien ut magna elementum iaculis quis et libero. Quisque faucibus sapien ut sapien dignissim mattis. Nulla vel dui pulvinar est facilisis tincidunt. Quisque at enim a mauris porta mollis.</p>
+
+              <h2>Source code</h2>
+              <ul>
+                <li>{{ Source("layout/tools/reftest", "Harness") }}</li>
+                <li>{{ Source("layout/reftests", "Tests") }}</li>
+              </ul>
+
+              <h2>Sample of test log</h2>
+<pre>REFTEST INFO | runreftest.py | Running tests: start.
+args: ['/.../dist/FirefoxNightly.app/Contents/MacOS/firefox-bin', '-foreground', ...
+INFO | automation.py | Application pid: 9898
+REFTEST INFO | Dumping JSON representation of sandbox
+REFTEST INFO | {"isDebugBuild":false,"xulRuntime":{"widgetToolkit":"cocoa", ...
+REFTEST TEST-START | data:text/html,<body> | 0 / 107 (0%)
+REFTEST INFO | [CONTENT] Using browser remote=false
+REFTEST INFO | WARNING: USE_WIDGET_LAYERS disabled
+REFTEST INFO | drawWindow flags = DRAWWINDOW_DRAW_CARET | DRAWWINDOW_DRAW_VIEW; ...
+REFTEST TEST-START | about:blank | 0 / 107 (0%)
+REFTEST TEST-PASS | data:text/html,<body> | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-START | data:text/plain, | 1 / 107 (0%)
+REFTEST TEST-PASS | data:text/plain, | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-START | data:text/plain,HELLO | 2 / 107 (1%)
+REFTEST TEST-PASS | data:text/plain,HELLO | image comparison (!=)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-START | file:///.../test-async.xul | 3 / 107 (2%)
+REFTEST TEST-START | file:///.../test-async-ref.xul | 3 / 107 (2%)
+REFTEST TEST-PASS | file:///.../test-async.xul | image comparison (==)
+REFTEST INFO | Loading a blank page
+...
+REFTEST FINISHED: Slowest test took 240ms (file:///.../page-width-3.9in.html)
+REFTEST INFO | Result summary:
+REFTEST INFO | Successful: 80 (73 pass, 7 load only)
+REFTEST INFO | Unexpected: 0 (0 unexpected fail, 0 unexpected pass, 0 unexpected asserts, 0 unexpected fixed asserts, 0 failed load, 0 exception)
+REFTEST INFO | Known problems: 28 (7 known fail, 0 known asserts, 2 random, 19 skipped, 0 slow)
+REFTEST INFO | Total canvas count = 3
+REFTEST TEST-START | Shutdown
+INFO | automation.py | Application ran for: 0:00:06.679444
+INFO | automation.py | Reading PID log: /var/folders/5_/9gz0dv9s51q2shxc8hg62j200000gn/T/tmpDRE_6Qpidlog
+WARNING | automationutils.processLeakLog() | refcount logging is off, so leaks can't be detected!</pre>
+
+              <h2>Continue reading</h2>
+              <ul>
+                <li><a href="how_to_run.html">How to run Reftests</a></li>
+                <li><a href="how_to_write.html">How to write Reftests</a></li>
+              </ul>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftest</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
