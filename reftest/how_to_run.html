@@ -23,23 +23,28 @@
               <h2>Desktop</h2>
 
               <h3>With build environment</h3>
-              <ol>
-                <li>Setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>.</li>
-                <li>Run <code>make -C $(OBJDIR) reftest</code>
-                <ul>
-                  <li><code>$(OBJDIR)</code> is the build's object directory, which is prefixed with obj-. The exact name depends on your system and OS.</li>
-                  <li>To run a particular set of reftests, use <code>TEST_PATH=path/from/sourcedir/reftest.list make -C $(OBJDIR) reftest</code></li>
-                </ul></li>
-              </ol>
+              <p>First, setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>. In the following examples, <code>$(OBJDIR)</code> is the build's object directory. This is prefixed with obj-, and the exact name depends on your system and OS.</p>
+
+              <h4>Run all tests</h4>
+              <pre class="brush:html">$ make -C $(OBJDIR) reftest</pre>
+
+              <h4>Run a subset of tests</h4>
+              <pre class="brush:html">$ TEST_PATH=path/from/sourcedir/reftest.list make -C $(OBJDIR) reftest</pre>
+
+              <h4>Run IPC reftests</h4>
+              <p>Reftests can also be run in a separate process, which can differ from same-process rendering in significant ways. Currently, IPC reftests are only being run on Linux.</p>
+              <pre class="brush:html">$ MOZ_LAYERS_FORCE_SHMEM_SURFACES=1 make -C $(OBJDIR) reftest-ipc</pre>
 
               <div class="note">Automation currently only runs <code>layout/reftests/reftest-sanity/reftest.list</code>! If you try to run the full suite, you may experience stalls or other issues.</div>
 
               <h3>With built packages</h3>
-              <ol>
-                <li>Download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>.</li>
-                <li>Open a terminal and change to the directory of the extracted tests.</li>
-                <li>Run <code>python runreftest.py tests/layout/reftests/reftest-sanity</code></li>
-              </ol>
+              <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests/reftest</code> as the working directory.</p>
+
+              <h4>Run all tests</h4>
+              <pre class="brush:html">$ python runreftest.py tests/layout/reftests</pre>
+
+              <h4>Run sanity tests</h4>
+              <pre class="brush:html">$ python runreftest.py tests/layout/reftests/reftest-sanity</pre>
 
               <h2>Mobile</h2>
               <p>Reftest does not support running tests on mobile.</p>
