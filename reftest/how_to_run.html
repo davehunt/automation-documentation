@@ -43,14 +43,18 @@
               <div class="note">Automation currently only runs <code>layout/reftests/reftest-sanity/reftest.list</code>! If you try to run the full suite, you may experience stalls or other issues.</div>
 
               <h3>Running with built packages</h3>
-              <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests/reftest</code> as the working directory.</p>
+              <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests</code> path as the working directory.</p>
 
-              <h4>Run all tests</h4>
-              <pre class="brush:html">$ python runreftest.py tests/layout/reftests</pre>
+              <pre class="brush:html">$ python reftest/runreftest.py --appname=$(APPLICATION) --utility-path=bin --extra-profile-file=bin/plugins reftest/tests/layout/reftests/reftest.list</pre>
 
-              <h4>Run sanity tests</h4>
-              <pre class="brush:html">$ python runreftest.py tests/layout/reftests/reftest-sanity</pre>
+              <p>Substitute <code>$(APPLICATION)</code> with the relative or absolute path to the Firefox binary. For example on Windows this might be <code>firefox/firefox.exe</code> and on Mac OS <code>FirefoxNightly.app/Contents/MacOS/firefox-bin</code>.</p>
 
+              <h4>Manifests</h4>
+              <p>The final argument is the manifest file, which determines the tests to be run. If you don't want to use the {{ Source("layout/reftests/reftest.list", "default manifest") }}, simply change this argument to point to an alternative. The format of the manifest is covered in <a href="how_to_write.html">Writing Reftests</a>.</p>
+
+              <h4>Crash diagnosis</h4>
+              <p>If you need to diagnose crashes that occur during the testrun then you will need to include the <code>--symbols-path</code> argument. This is an absolute path to a directory containing breakpad symbols, or the URL of a zip file containing symbols. The tinderbox and try builds include these symbols, and can be found by the file ending with <code>crashreporter-symbols.zip</code>.</p>
+              
               <h2>Mobile</h2>
               <p>Reftest does not support running tests on mobile.</p>
 
