@@ -23,7 +23,7 @@
               <h2>Desktop</h2>
 
               <h3>Running on try</h3>
-              <p>To run the reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
+              <p>To run the Reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
               <pre>try: -b do -u reftest</pre>
               <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
 
@@ -50,7 +50,17 @@
               <p>If you need to diagnose crashes that occur during the testrun then you will need to include the <code>--symbols-path</code> argument. This is an absolute path to a directory containing breakpad symbols, or the URL of a zip file containing symbols. The tinderbox and try builds include these symbols, and can be found by the file ending with <code>crashreporter-symbols.zip</code>.</p>
               
               <h2>Mobile</h2>
-              <p>Reftest does not support running tests on mobile.</p>
+
+              <h3 id="running_mobile_on_try">Running on try</h3>
+              <p>To run the Reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
+              <pre>try: -b do -p android,android-armv6 -u reftest</pre>
+              <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
+
+              <h3 id="running_mobile_with_build_environment">Running with build environment</h3>
+              <p>It is currently recommended to run mobile reftests <a href="#running_mobile_on_try">on try</a>. For details on how to run reftests agains a local build, see <a href="https://wiki.mozilla.org/Mobile/Fennec_Mochitest#Reftests">this documentation</a>.</p>
+
+              <h3>Running with built packages</h3>
+              <p>This is not currently recommended. See documentation for running <a href="#running_mobile_on_try">on try</a> or <a href="#running_mobile_with_build_environment">with a build environment</a>.</p>
 
               <h2>Continue reading</h2>
               <a href="how_to_write.html">How to write Reftests</a>
