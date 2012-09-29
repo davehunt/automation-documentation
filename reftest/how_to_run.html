@@ -22,7 +22,12 @@
 
               <h2>Desktop</h2>
 
-              <h3>With build environment</h3>
+              <h3>Running on try</h3>
+              <p>To run the reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
+              <pre>try: -b do -u reftest</pre>
+              <p>For more information, read the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
+
+              <h3>Running with build environment</h3>
               <p>First, setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>. In the following examples, <code>$(OBJDIR)</code> is the build's object directory. This is prefixed with obj-, and the exact name depends on your system and OS.</p>
 
               <h4>Run all tests</h4>
@@ -37,7 +42,7 @@
 
               <div class="note">Automation currently only runs <code>layout/reftests/reftest-sanity/reftest.list</code>! If you try to run the full suite, you may experience stalls or other issues.</div>
 
-              <h3>With built packages</h3>
+              <h3>Running with built packages</h3>
               <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests/reftest</code> as the working directory.</p>
 
               <h4>Run all tests</h4>
