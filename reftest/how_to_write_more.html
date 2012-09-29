@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Writing more Reftests</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Read first</h2>
+              <ul>
+                <li><a href="overview.html">Reftest overview</a></li>
+                <li><a href="how_to_run.html">How to run Reftests</a></li>
+                <li><a href="how_to_run.html">How to write Reftests</a></li>
+              </ul>
+
+              <h2 id="your_first_test">Your second and third test</h2>
+              <p>Once you have successfully written <a href="how_to_write.html#your_first_test">you first Reftest</a>, you can try these additional tests..</p>
+
+              <ol start="1"><li>Create a file named <code>spaces1.html</code> with the following content:</li></ol>
+              <pre class="brush:html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;spaces1&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;X X&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+              <ol start="2"><li>Create a file named <code>spaces2.html</code> with the following content:</li></ol>
+              <pre class="brush:html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;spaces2&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&amp;nbsp;&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+              <ol start="3"><li>Create a file named <code>spaces3.html</code> with the following content:</li></ol>
+              <pre class="brush:html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;spaces1&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;X&amp;nbsp;&amp;nbsp;X&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+              <ol start="4"><li>Create a file named <code>spaces4.html</code> with the following content:</li></ol>
+              <pre class="brush:html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;spaces2&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;X  X&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+              <ol start="5"><li>Create or modify your manifest file named <code>reftest.list</code> with the following content:</li></ol>
+              <pre class="brush">== spaces1.html spaces2.html
+!= spaces3.html spaces4.html</pre>
+
+              <p>The first two files, <code>spaces1.html</code> and <code>spaces2.html</code>, are confirming only that a space (the character equal to 0x20 in ASCII) creates the same visual construct as the HTML entity for a non-breaking space. The second pair of files, <code>spaces3.html</code> and <code>spaces4.html</code>, confirms that two regular spaces do <em>not</em> produce the same visual construct as two non-breaking spaces.
+
+              <p>When we run these tests (using the using the appropriate section in <a href="how_to_run.html">How to run Reftests</a>) we should see something like the following in our output:</p>
+
+              <pre class="brush:shell">REFTEST TEST-START | file:///.../spaces1.html | 0 / 2 (0%)
+REFTEST TEST-START | file:///.../spaces2.html | 0 / 2 (0%)
+REFTEST TEST-PASS | file:///.../spaces1.html | image comparison (==)
+REFTEST TEST-START | file:///.../spaces3.html | 1 / 2 (50%)
+REFTEST TEST-START | file:///.../spaces4.html | 1 / 2 (50%)
+REFTEST TEST-PASS | file:///.../spaces3.html | image comparison (!=)</pre>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftest</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

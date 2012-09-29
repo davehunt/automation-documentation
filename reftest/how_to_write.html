@@ -24,7 +24,7 @@
               <h2 id="your_first_test">Your first test</h2>
               <p>You will need either a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a> or to download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>.</p>
 
-              <ol start="2"><li>Create a file named <code>foo.html</code> with the following content:</li></ol>
+              <ol start="1"><li>Create a file named <code>foo.html</code> with the following content:</li></ol>
               <pre class="brush:html">&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;reftest0001&lt;/title&gt;
@@ -34,7 +34,7 @@
   &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-              <ol start="3"><li>Create a file named <code>bar.html</code> with the following content:</li></ol>
+              <ol start="2"><li>Create a file named <code>bar.html</code> with the following content:</li></ol>
               <pre class="brush:html">&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;reftest0001&lt;/title&gt;
@@ -44,16 +44,30 @@
   &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-              <ol start="3"><li>Create a file named <code>reftest.list</code> with the following content:</li></ol>
-              <pre>== foo.html bar.html</pre>
+              <ol start="3"><li>Create a manifest file named <code>reftest.list</code> with the following content:</li></ol>
+              <pre class="brush">== foo.html bar.html</pre>
 
-              <ol start="4">Run the test using the following command:</li></ol>
-              <pre class="brush:shell">$ magic!</pre>
+              <ol start="4"><li>Run the test using the appropriate section in <a href="how_to_run.html">How to run Reftests</a>, making sure to specify your new manifest file. You should see something similar to the following in the resulting output:</li></ol>
+              <pre class="brush:shell">REFTEST TEST-START | file:///.../foo.html | 0 / 1 (0%)
+REFTEST TEST-START | file:///.../bar.html | 0 / 1 (0%)
+REFTEST TEST-PASS | file:///.../foo.html | image comparison (==)</pre>
 
-              <p>Congratulations! You have just created your first Reftest!</p>
+              <p>Congratulations! You have just created your first Reftest! When you're feeling reading, try <a href="how_to_write_more.html">a couple more examples</a>.</p>
 
-              <h2>Test system specifics</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a convallis risus. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat leo ac leo facilisis id tincidunt orci posuere. Phasellus sit amet dolor eros. Donec commodo, dolor non accumsan ornare, neque justo viverra odio, at ullamcorper ligula nunc ut arcu. Vestibulum quis mi non tellus condimentum venenatis. Mauris vel ante ac eros varius gravida nec sed augue. In hac habitasse platea dictumst.</p>
+              <h2>Manifest files</h2>
+              <p>Manifest files can contain any number of tests, and can also contain other things, but it doesn't get very complicated. Here is an example:
+
+              <pre class="brush">#example manifest
+include ../other.list
+== foo.html bar.html
+!= aaa.html bbb.html</pre>
+
+              <p>The first line is a comment. The second line, as one might expect, includes another manifest file. The third line should look familiar. It says that <code>foo.html</code> and <code>bar.html</code> should produce visually identical output. The fourth line says that <code>aaa.html</code> and <code>bbb.html</code> should <em>not</em> produce visually identical output. More information on manifest files can be found in the {{ Source("layout/tools/reftest/README.txt", "README") }}.</p>
+
+              <h2>Continue reading</h2>
+              <ul>
+                <li><a href="how_to_write_more.html">How to write more Reftests</a></li>
+              </ul>
             </div>
 
             <section class="page-meta">

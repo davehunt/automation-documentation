@@ -42,6 +42,8 @@
               indentation at all. If a regression test harness has false failures, it makes
               the harness not trustworthy and the harness will not be used.</p>
 
+              <p>Reftests cannot rely on behaviour that requires elevated privileges. This is because build process runs them in a profile that does not automatically grant them. Requesting elevated privileges will display the standard security alert, and will likely cause the test to hang or timeout. Any tests that require such privileges to work correctly would most likely be better written using the <a href="../mochitest/overview.html">Mochitest</a> framework.</p>
+
               <h2 id="source_code">Source code</h2>
               <ul>
                 <li>{{ Source("layout/tools/reftest", "Harness") }}</li>
@@ -87,6 +89,7 @@ WARNING | automationutils.processLeakLog() | refcount logging is off, so leaks c
               <ul>
                 <li><a href="how_to_run.html">How to run Reftests</a></li>
                 <li><a href="how_to_write.html">How to write Reftests</a></li>
+                <li><a href="how_to_write_more.html">How to write more Reftests</a></li>
               </ul>
             </div>
 
