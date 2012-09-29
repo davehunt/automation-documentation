@@ -22,7 +22,7 @@
 
               <h2>Desktop</h2>
 
-              <h3>Running on try</h3>
+              <h3 id="running_desktop_on_try">Running on try</h3>
               <p>To run the Reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
               <pre>try: -b do -u reftest</pre>
               <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
@@ -52,7 +52,7 @@
               <h2>Mobile</h2>
 
               <h3 id="running_mobile_on_try">Running on try</h3>
-              <p>To run the Reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
+              <p>Running the Reftests on try against mobile is the same as <a href="#running_desktop_on_try">for desktop</a>, however you can limit the platform to only run the mobile Reftests. To do this, include the <code>-p</code> argument in the commit message when you push to try.</p>
               <pre>try: -b do -p android,android-armv6 -u reftest</pre>
               <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
 
