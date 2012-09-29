@@ -31,15 +31,15 @@
               <p>First, setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>. In the following examples, <code>$(OBJDIR)</code> is the build's object directory. This is prefixed with <code>obj-</code>, and the exact name depends on your system and OS.</p>
 
               <h4>Run all tests</h4>
-              <pre class="brush:html">$ make -C $(OBJDIR) reftest</pre>
+              <pre class="brush:shell">$ make -C $(OBJDIR) reftest</pre>
 
               <h4>Run a subset of tests</h4>
-              <pre class="brush:html">$ TEST_PATH=path/from/sourcedir/reftest.list make -C $(OBJDIR) reftest</pre>
+              <pre class="brush:shell">$ TEST_PATH=path/from/sourcedir/reftest.list make -C $(OBJDIR) reftest</pre>
 
               <h3>Running with built packages</h3>
               <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests</code> path as the working directory.</p>
 
-              <pre class="brush:html">$ python reftest/runreftest.py --appname=$(APPLICATION) --utility-path=bin --extra-profile-file=bin/plugins reftest/tests/layout/reftests/reftest.list</pre>
+              <pre class="brush:shell">$ python reftest/runreftest.py --appname=$(APPLICATION) --utility-path=bin --extra-profile-file=bin/plugins reftest/tests/layout/reftests/reftest.list</pre>
 
               <p>Substitute <code>$(APPLICATION)</code> with the relative or absolute path to the Firefox binary. For example on Windows this might be <code>firefox/firefox.exe</code> and on Mac OS <code>FirefoxNightly.app/Contents/MacOS/firefox-bin</code>.</p>
 
