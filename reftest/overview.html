@@ -50,46 +50,12 @@
                 <li>{{ Source("layout/reftests", "Tests") }}</li>
               </ul>
 
-              <h2>Sample of test log</h2>
-<pre>REFTEST INFO | runreftest.py | Running tests: start.
-args: ['/.../dist/FirefoxNightly.app/Contents/MacOS/firefox-bin', '-foreground', ...
-INFO | automation.py | Application pid: 9898
-REFTEST INFO | Dumping JSON representation of sandbox
-REFTEST INFO | {"isDebugBuild":false,"xulRuntime":{"widgetToolkit":"cocoa", ...
-REFTEST TEST-START | data:text/html,<body> | 0 / 107 (0%)
-REFTEST INFO | [CONTENT] Using browser remote=false
-REFTEST INFO | WARNING: USE_WIDGET_LAYERS disabled
-REFTEST INFO | drawWindow flags = DRAWWINDOW_DRAW_CARET | DRAWWINDOW_DRAW_VIEW; ...
-REFTEST TEST-START | about:blank | 0 / 107 (0%)
-REFTEST TEST-PASS | data:text/html,<body> | image comparison (==)
-REFTEST INFO | Loading a blank page
-REFTEST TEST-START | data:text/plain, | 1 / 107 (0%)
-REFTEST TEST-PASS | data:text/plain, | image comparison (==)
-REFTEST INFO | Loading a blank page
-REFTEST TEST-START | data:text/plain,HELLO | 2 / 107 (1%)
-REFTEST TEST-PASS | data:text/plain,HELLO | image comparison (!=)
-REFTEST INFO | Loading a blank page
-REFTEST TEST-START | file:///.../test-async.xul | 3 / 107 (2%)
-REFTEST TEST-START | file:///.../test-async-ref.xul | 3 / 107 (2%)
-REFTEST TEST-PASS | file:///.../test-async.xul | image comparison (==)
-REFTEST INFO | Loading a blank page
-...
-REFTEST FINISHED: Slowest test took 240ms (file:///.../page-width-3.9in.html)
-REFTEST INFO | Result summary:
-REFTEST INFO | Successful: 80 (73 pass, 7 load only)
-REFTEST INFO | Unexpected: 0 (0 unexpected fail, 0 unexpected pass, 0 unexpected asserts, 0 unexpected fixed asserts, 0 failed load, 0 exception)
-REFTEST INFO | Known problems: 28 (7 known fail, 0 known asserts, 2 random, 19 skipped, 0 slow)
-REFTEST INFO | Total canvas count = 3
-REFTEST TEST-START | Shutdown
-INFO | automation.py | Application ran for: 0:00:06.679444
-INFO | automation.py | Reading PID log: /var/folders/5_/9gz0dv9s51q2shxc8hg62j200000gn/T/tmpDRE_6Qpidlog
-WARNING | automationutils.processLeakLog() | refcount logging is off, so leaks can't be detected!</pre>
-
               <h2>Continue reading</h2>
               <ul>
                 <li><a href="how_to_run.html">How to run Reftests</a></li>
                 <li><a href="how_to_write.html">How to write Reftests</a></li>
                 <li><a href="how_to_write_more.html">How to write more Reftests</a></li>
+                <li><a href="log_format.html">Understanding the Reftest log file</a></li>
               </ul>
             </div>
 
