@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Advanced Reftest topics</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Read first</h2>
+              <ul>
+                <li><a href="overview.html">Reftest overview</a></li>
+                <li><a href="how_to_run.html">How to run Reftests</a></li>
+                <li><a href="how_to_run.html">How to write Reftests</a></li>
+                <li><a href="how_to_run_more.html">How to write more Reftests</a></li>
+                <li><a href="log_format.html">Understanding the Reftest log file</a></li>
+              </ul>
+
+              <h2>Testing invalidation</h2>
+              <p>Testing that a document displays correctly once it has loaded is only one part of testing rendering. Another part is testing invalidation - testing that when a document is changed <em>after</em> it has finished loading and displaying, that the browser correctly "invalidates" the parts of the screen that should change so that the screen displays the correct output the next time it is repainted. Invalidation tests check both that the internal state of the document has been updated correctly, and that the browser then correctly invalidates and repaints the appropriate parts of the screen.</p>
+              <p>In order to test invalidation it is important that invalidation tests let the document <em>completely</em> finish loading and displaying before making the changes for which invalidation and repainting is to be tested. Making the changes before the document has completely finished loading and painting would mean that the test may not actually test the browser's invalidation logic, since the changed parts of the document may end up displaying correctly purely due to a pending post-load paint.</p>
+              <p>To write an invalidation Reftest requires three extra steps. First you need to add <code>class="reftest-wait"</code> to the root element in the test to tell the Reftest framework not to check the rendering as soon as the test finishes loading and moving on to the next test. Next you need to add a listener for the <code>MozReftestInvalidate</code> event, and only make the changes you want to test invalidation for after that event has fired. Third, you need to remove <code>reftest-wait</code> from the root element's <code>class</code> attribute to tell the Reftest framework that the test is now ready to have its rendering tested.</p>
+              <p>The reason for using the <code>MozReftestInvalidate</code> event is because a document's initial painting is not typically finished when the <code>load</code> event fires. It would be possible to try and wait for the initial rendering to be done using a <code>setTimeout</code>, but that would be unreliable, and just as bad, it can increase the time it takes to run a test many times over (which when you're running thousands of tests can really slow things down). The <code>MozReftestInvalidate</code> event is designed to fire as soon after the initial rendering of the document is finished as possible, but never before. The Reftest framework fires one <code>MozReftestInvalidate</code> event at the document root element for a reftest-wait test when it is safe to make changes that should test invalidation. The event bubbles up to the document and window so you can set listeners there too.</p>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftest</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Advanced</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
