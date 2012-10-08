@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Running Reftests</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Read first</h2>
+              <ul>
+                <li><a href="overview.html">Reftest overview</a></li>
+              </ul>
+
+              <h2>Desktop</h2>
+
+              <h3 id="running_desktop_on_try">Running on try</h3>
+              <p>To run the Reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
+              <pre>try: -b do -u reftest</pre>
+              <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
+
+              <h3>Running with build environment</h3>
+              <p>First, setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>. In the following examples, <code>$(OBJDIR)</code> is the build's object directory. This is prefixed with <code>obj-</code>, and the exact name depends on your system and OS.</p>
+
+              <h4>Run all tests</h4>
+              <pre class="brush:shell">$ make -C $(OBJDIR) reftest</pre>
+
+              <h4>Run a subset of tests</h4>
+              <pre class="brush:shell">$ TEST_PATH=path/from/sourcedir/reftest.list make -C $(OBJDIR) reftest</pre>
+
+              <h3>Running with built packages</h3>
+              <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests</code> path as the working directory.</p>
+
+              <pre class="brush:shell">$ python reftest/runreftest.py --appname=$(APPLICATION) --utility-path=bin --extra-profile-file=bin/plugins reftest/tests/layout/reftests/reftest.list</pre>
+
+              <p>Substitute <code>$(APPLICATION)</code> with the relative or absolute path to the Firefox binary. For example on Windows this might be <code>firefox/firefox.exe</code> and on Mac OS <code>FirefoxNightly.app/Contents/MacOS/firefox-bin</code>.</p>
+
+              <h4>Manifests</h4>
+              <p>The final argument is the manifest file, which determines the tests to be run. If you don't want to use the {{ Source("layout/reftests/reftest.list", "default manifest") }}, simply change this argument to point to an alternative. The format of the manifest is covered in <a href="how_to_write.html">Writing Reftests</a>.</p>
+
+              <h4 id="crash_diagnosis">Crash diagnosis</h4>
+              <p>If you need to diagnose crashes that occur during the testrun then you will need to include the <code>--symbols-path</code> argument. This is an absolute path to a directory containing breakpad symbols, or the URL of a zip file containing symbols. The tinderbox and try builds include these symbols, and can be found by the file ending with <code>crashreporter-symbols.zip</code>.</p>
+              
+              <h2>Mobile</h2>
+
+              <h3 id="running_mobile_on_try">Running on try</h3>
+              <p>Running the Reftests on try against mobile is the same as <a href="#running_desktop_on_try">for desktop</a>, however you can limit the platform to only run the mobile Reftests. To do this, include the <code>-p</code> argument in the commit message when you push to try.</p>
+              <pre>try: -b do -p android,android-armv6 -u reftest</pre>
+              <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
+
+              <h3 id="running_mobile_with_build_environment">Running with build environment</h3>
+              <p>It is currently recommended to run mobile reftests <a href="#running_mobile_on_try">on try</a>. For details on how to run reftests agains a local build, see <a href="https://wiki.mozilla.org/Mobile/Fennec_Mochitest#Reftests">this documentation</a>.</p>
+
+              <h3>Running with built packages</h3>
+              <p>This is not currently recommended. See documentation for running <a href="#running_mobile_on_try">on try</a> or <a href="#running_mobile_with_build_environment">with a build environment</a>.</p>
+
+              <h2>Continue reading</h2>
+              <ul>
+                <li><a href="how_to_write.html">How to write Reftests</a></li>
+                <li><a href="how_to_write_more.html">How to write more Reftests</a></li>
+                <li><a href="log_format.html">Understanding the Reftest log file</a></li>
+                <li><a href="advanced.html">Advanced topics</a></li>
+              </ul>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftests</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

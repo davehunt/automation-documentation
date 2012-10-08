@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Understanding the Reftest log file</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Read first</h2>
+              <ul>
+                <li><a href="overview.html">Reftest overview</a></li>
+                <li><a href="how_to_run.html">How to run Reftests</a></li>
+                <li><a href="how_to_write.html">How to write Reftests</a></li>
+                <li><a href="how_to_write_more.html">How to write more Reftests</a></li>
+              </ul>
+
+              <h2>Sample log</h2>
+<pre class="brush">REFTEST INFO | runreftest.py | Running tests: start.
+
+args: ['/.../firefox-bin', '-foreground', '-no-remote', '-profile', '/var/folders/5_/9gz0dv9s51q2shxc8hg62j200000gn/T/tmpUKW87N/', '-reftest', '/.../reftest.list']
+INFO | automation.py | Application pid: 4406
+REFTEST INFO | Dumping JSON representation of sandbox
+REFTEST INFO | &lt;SANDBOX&gt;
+REFTEST TEST-START | file:///.../strong.html | 0 / 6 (0%)
+REFTEST INFO | [CONTENT] Using browser remote=false
+
+REFTEST INFO | WARNING: USE_WIDGET_LAYERS disabled
+REFTEST INFO | drawWindow flags = DRAWWINDOW_DRAW_CARET | DRAWWINDOW_DRAW_VIEW; window size = 800,719; test browser size = 800,1000
+REFTEST TEST-START | file:///.../bold.html | 0 / 7 (0%)
+REFTEST TEST-PASS | file:///.../strong.html | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-START | file:///.../emphasis.html | 1 / 7 (14%)
+REFTEST TEST-START | file:///.../italic.html | 1 / 7 (14%)
+REFTEST   IMAGE: data:image/png;base64,&lt;BASE64 ENCODED IMAGE&gt;
+REFTEST TEST-UNEXPECTED-PASS | file:///.../emphasis.html | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-UNEXPECTED-FAIL | file:///.../emphasis.html | image comparison (==), max difference: 255, number of differing pixels: 755
+REFTEST   IMAGE 1 (TEST): data:image/png;base64,&lt;BASE64 ENCODED IMAGE&gt;
+REFTEST   IMAGE 2 (REFERENCE): data:image/png;base64,&lt;BASE64 ENCODED IMAGE&gt;
+REFTEST INFO | Saved log: RecordResult fired
+REFTEST INFO | Saved log: RecordResult fired
+REFTEST INFO | Loading a blank page
+REFTEST TEST-KNOWN-FAIL | file:///.../emphasis.html | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-PASS(EXPECTED RANDOM) | file:///.../strong.html | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-KNOWN-FAIL(EXPECTED RANDOM) | file:///.../italic.html | image comparison (==)
+REFTEST INFO | Loading a blank page
+REFTEST TEST-KNOWN-FAIL | file:///.../bold.html | (SKIP)
+REFTEST FINISHED: Slowest test took 40ms (file:///.../strong.html)
+REFTEST INFO | Result summary:
+REFTEST INFO | Successful: 1 (1 pass, 0 load only)
+REFTEST INFO | Unexpected: 2 (1 unexpected fail, 1 unexpected pass, 0 unexpected asserts, 0 unexpected fixed asserts, 0 failed load, 0 exception)
+REFTEST INFO | Known problems: 4 (1 known fail, 0 known asserts, 2 random, 1 skipped, 0 slow)
+REFTEST INFO | Total canvas count = 4
+REFTEST TEST-START | Shutdown
+INFO | automation.py | Application ran for: 0:00:01.860252
+INFO | automation.py | Reading PID log: /var/folders/5_/9gz0dv9s51q2shxc8hg62j200000gn/T/tmpii7F_hpidlog
+WARNING | automationutils.processLeakLog() | refcount logging is off, so leaks can't be detected!</pre>
+
+              <h2>Components</h2>
+              <p>The log starts by indicating the start of the testrun, and dumping the application PID and sandbox details. The following entries are common to Reftest logs:</p>
+              <dl>
+                <dt>REFTEST TEST-START</dt>
+                <dd>Test started.</dd>
+                <dt>REFTEST TEST-PASS</dt>
+                <dd>Test passed.</dd>
+                <dt>REFTEST TEST-UNEXPECTED-PASS</dt>
+                <dd>Test passed when it was marked as expected to fail.</dd>
+                <dt>REFTEST TEST-UNEXPECTED-FAIL</dt>
+                <dd>Test failed. The number of differing pixels is icluded in the log, as well as the full base 64 encoded images for the both sides of the comparison.</dd>
+                <dt>REFTEST TEST-KNOWN-FAIL</dt>
+                <dd>Either the test failed when it was marked as expected to fail, or it was marked as skipped. If it's skipped the line will end with (SKIP).</dd>
+                <dt>REFTEST TEST-KNOWN-FAIL ... (SKIP)</dt>
+                <dd>Test skipped.</dd>
+                <dt>REFTEST TEST-PASS(EXPECTED RANDOM)</dt>
+                <dd>Test with random results passed.</dd>
+                <dt>REFTEST TEST-KNOWN-FAIL(EXPECTED RANDOM)</dt>
+                <dd>Test with random results failed.</dd>
+              </dl>
+              <p>After the tests, the slowest test is indicated, and the result summary is printed. This shows the number of passed and failed tests. The most important item here is any unexpected results - these indicate that tests have failed and will need investigation. The final items in the log relate to stopping the test run, and cleaning up anything necessary.</p>
+
+              <h2>Analyzer</h2>
+              <p>Because Reftests are very visual, the log file itself is not very helpful for understanding the failures. The Reftest Analyzer helps by taking a log file and presenting the test/reference images for comparison. To use it, simply open the <a href="http://hg.mozilla.org/mozilla-central/raw-file/default/layout/tools/reftest/reftest-analyzer.xhtml">Reftest Analyzer</a> in Firefox, and either paste in the log file content, or open the log from file. Once the log has loaded, the list of tests will be displayed on the left. When you click on a failing test you will be able to toggle between showing the two images captured for comparison. Hover over the images to show a magnification in the top left of the page. Finally, you can circle the differences between the images by clicking the appropriately labeled checkbox.</p>
+
+              <h2>Continue reading</h2>
+              <ul>
+                <li><a href="advanced.html">Advanced topics</a></li>
+              </ul>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftest</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Log</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

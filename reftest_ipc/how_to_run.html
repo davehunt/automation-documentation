@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/mdn-min.css?build=919eaca" />
+    <link rel="stylesheet" href="http://developer.mozilla.org/media/css/wiki-min.css?build=919eaca" />
+  </head>
+  <body>
+    <section id="content">
+      <div class="wrap">
+        <div id="content-main" class="full">
+          <article class="article">
+            <header id="article-head">
+              <div class="title">
+                <h1 class="page-title">Running IPC Reftests</h1>
+              </div>
+            </header>
+
+            <div id="wikiArticle" class="page-content boxed">
+              <h2>Read first</h2>
+              <ul>
+                <li><a href="overview.html">IPC Reftest overview</a></li>
+              </ul>
+
+              <h2>Desktop</h2>
+
+              <div class="note">Currently, IPC Reftests are only being run on Linux. Also, only the {{ Source("layout/reftests/reftest-sanity/reftest.list", "sanity") }} tests are being run. If you try to run the full suite, you may experience stalls or other issues.</div>
+
+              <h3>Running on try</h3>
+              <p>To run the IPC Reftests on try, add the following <code>try:</code> block to the end of the topmost commit message when you push to try.</p>
+              <pre>try: -b do -u reftest-ipc</pre>
+              <p>For more information, refer to the <a href="https://wiki.mozilla.org/Build:TryChooser">TryChooser documentation</a>.</p>
+
+              <h3>Running with build environment</h3>
+              <p>First, setup a <a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">Firefox build environment</a>. In the following examples, <code>$(OBJDIR)</code> is the build's object directory. This is prefixed with <code>obj-</code>, and the exact name depends on your system and OS.</p>
+
+              <h4>Run all tests</h4>
+              <pre class="brush:shell">$ MOZ_LAYERS_FORCE_SHMEM_SURFACES=1 make -C $(OBJDIR) reftest-ipc</pre>
+
+              <h3>Running with built packages</h3>
+              <p>First, download and extract the <a href="../built_test_packages.html#Firefox">built test packages</a>. The following commands require the extracted <code>tests</code> path as the working directory.</p>
+
+              <pre class="brush:html">$ python reftest/runreftest.py --appname=$(APPLICATION) --utility-path=bin --extra-profile-file=bin/plugins --setpref=browser.tabs.remote=true reftest/tests/layout/reftests/reftest-sanity/reftest.list</pre>
+              
+              <p>Substitute <code>$(APPLICATION)</code> with the relative or absolute path to the Firefox binary. For example on Windows this might be <code>firefox/firefox.exe</code> and on Mac OS <code>FirefoxNightly.app/Contents/MacOS/firefox-bin</code>.</p>
+
+              <h4>Manifests</h4>
+              <p>The final argument is the manifest file, which determines the tests to be run. If you don't want to use the {{ Source("layout/reftests/reftest-sanity/reftest.list", "default manifest") }}, simply change this argument to point to an alternative. The format of the manifest is covered in <a href="../reftest/how_to_write.html">Writing Reftests</a>.</p>
+
+              <h4>Crash diagnosis</h4>
+              <p>See <a href="../reftest/how_to_run.html#crash_diagnosis">Reftest crash diagnosis</a>.</p>
+
+              <h2>Mobile</h2>
+
+              <div class="note">IPC Reftests are currently only run on Linux.</div>
+
+              <h2>Continue reading</h2>
+              <a href="how_to_write.html">How to write IPC Reftests</a>
+            </div>
+
+            <section class="page-meta">
+              <section id="page-tags">
+                <div id="deki-page-tags">
+                  <ul class="tagit ui-widget">
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Automation</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">Reftests</a>
+                    </li>
+                    <li class="tagit-choice">
+                      <a class="tagit-label">IPC</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
